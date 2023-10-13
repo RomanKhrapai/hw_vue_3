@@ -5,7 +5,7 @@
   "homepage": "https://RomanKhrapai.github.io/hw_vue_3",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --public-url /hw_vue_3/",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
