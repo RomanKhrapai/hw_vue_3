@@ -1,13 +1,6 @@
-<script setup>
-import Text from "./components/Text.vue"
-import LightBulb from "./components/LightBulb.vue"
-import RadioBlock from "./components/RadioBlock.vue"
-</script>
-
-
 <template>
   <div>
-    <CustomButton style="margin-bottom: 10px;" @click="turnLight">увімкнути світло</CustomButton>
+    <CustomButton class="light-bulb-btn" @click="turnLight">увімкнути світло</CustomButton>
     <Text>{{ isLight ? "Світло світить" : "Світло вимкнене" }}</Text>
     <LightBulb :isOn="isLight"></LightBulb>
     <Text v-show="isLight">Приховати з v-show </Text>
@@ -17,18 +10,25 @@ import RadioBlock from "./components/RadioBlock.vue"
     <Text v-if="radio === 1">Обрано першу радіо кнопку</Text>
     <Text v-if="radio === 2">Обрано другу радіо кнопку</Text>
     <Text v-if="radio === 3">Обрано третю радіо кнопку</Text>
-    <CustomButton :disabled="numBtnDisabled === 1" style="width: 200px;height: 80px;" @click="addDisabled(1)">{{
+    <CustomButton class="wait-btn" :disabled="numBtnDisabled === 1" @click="addDisabled(1)">{{
       textBtn(1) }}
       атрибут 'disabled'
     </CustomButton>
-    <CustomButton :disabled="numBtnDisabled === 2" style="width: 200px;height: 80px;" @click="addDisabled(2)">{{
+    <CustomButton class="wait-btn" :disabled="numBtnDisabled === 2" @click="addDisabled(2)">{{
       textBtn(2) }}
       атрибут 'disabled'</CustomButton>
   </div>
 </template>
 
 <script>
+import Text from "./components/Text.vue"
+import LightBulb from "./components/LightBulb.vue"
+import RadioBlock from "./components/RadioBlock.vue"
+
 export default {
+  components: {
+    Text, LightBulb, RadioBlock
+  },
   data() {
     return {
       isLight: true,
@@ -54,4 +54,13 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.light-bulb-btn {
+  margin-bottom: 10px;
+}
+
+.wait-btn {
+  width: 200px;
+  height: 80px;
+}
+</style>
