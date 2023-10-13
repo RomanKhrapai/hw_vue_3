@@ -2,10 +2,10 @@
   "name": "hw_vue_3",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://RomanKhrapai.github.io/hw_vue_3",
+  // "homepage": "https://RomanKhrapai.github.io/hw_vue_3",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --public-url /hw_vue_3/",
+    "build": "vite build ",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
