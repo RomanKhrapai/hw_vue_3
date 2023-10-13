@@ -1,47 +1,57 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import Text from "./components/Text.vue"
+import LightBulb from "./components/LightBulb.vue"
+import RadioBlock from "./components/RadioBlock.vue"
 </script>
 
+
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <CustomButton style="margin-bottom: 10px;" @click="turnLight">увімкнути світло</CustomButton>
+    <Text>{{ isLight ? "Світло світить" : "Світло вимкнене" }}</Text>
+    <LightBulb :isOn="isLight"></LightBulb>
+    <Text v-show="isLight">Приховати з v-show </Text>
+    <Text v-if="isLight">Приховати з v-if </Text>
+    <RadioBlock @selectedOption="turnRadio"></RadioBlock>
+    <Text v-if="!radio">оберіть радіо кнопку</Text>
+    <Text v-if="radio === 1">Обрано першу радіо кнопку</Text>
+    <Text v-if="radio === 2">Обрано другу радіо кнопку</Text>
+    <Text v-if="radio === 3">Обрано третю радіо кнопку</Text>
+    <CustomButton :disabled="numBtnDisabled === 1" style="width: 200px;height: 80px;" @click="addDisabled(1)">{{
+      textBtn(1) }}
+      атрибут 'disabled'
+    </CustomButton>
+    <CustomButton :disabled="numBtnDisabled === 2" style="width: 200px;height: 80px;" @click="addDisabled(2)">{{
+      textBtn(2) }}
+      атрибут 'disabled'</CustomButton>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+export default {
+  data() {
+    return {
+      isLight: true,
+      radio: null,
+      numBtnDisabled: null,
+    }
+  },
+  methods: {
+    turnLight() {
+      this.isLight = !this.isLight
+    },
+    turnRadio(index) {
+      this.radio = +index;
+    },
+    addDisabled(index) {
+      this.numBtnDisabled = index;
+    },
+    textBtn(index) {
+      return this.numBtnDisabled !== index ? 'додати' : ''
+    }
+  },
+
 }
+</script>
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+<style scoped></style>
